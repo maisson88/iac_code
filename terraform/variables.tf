@@ -41,11 +41,8 @@ variable "iam-role" {
   default = "Jumphost-iam-role"
 }
 
-variable "ami_id" {
-  description = "AMI ID for the EC2 instance"
-  type        = string
-  default     = "ami-0bc7f2dbdcc6b5303"
-
+data "aws_ssm_parameter" "ubuntu_ami" {
+  name = "/aws/service/canonical/ubuntu/server/22.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
 }
 
 variable "instance_type" {
